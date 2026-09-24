@@ -1,0 +1,514 @@
+/* =========================================================================
+   Creative Decorative Elements — Award-Winning Visual Layer
+   ========================================================================= */
+
+/* ---- Noise/grain texture for premium feel ---- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ---- Hero abstract aurora ---- */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  right: -150px;
+  width: 800px;
+  height: 800px;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(166, 2, 18, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(212, 33, 61, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(184, 146, 62, 0.06) 0%, transparent 45%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat 20s ease-in-out infinite alternate;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: 
+    radial-gradient(circle, rgba(166, 2, 18, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 60% 30%, rgba(232, 197, 160, 0.05) 0%, transparent 40%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat 25s ease-in-out infinite alternate-reverse;
+}
+@keyframes auroraFloat {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(30px, -25px) scale(1.05) rotate(2deg); }
+  66% { transform: translate(-20px, 15px) scale(0.98) rotate(-1deg); }
+  100% { transform: translate(15px, -10px) scale(1.02) rotate(1deg); }
+}
+
+/* ---- Abstract decorative shapes ---- */
+.deco-ring {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border: 2px solid;
+  border-radius: 50%;
+  opacity: 0.04;
+}
+.deco-ring--hero-1 {
+  width: 400px;
+  height: 400px;
+  top: -80px;
+  right: -100px;
+  border-color: var(--brand-300);
+  animation: spinSlow 60s linear infinite;
+}
+.deco-ring--hero-2 {
+  width: 240px;
+  height: 240px;
+  bottom: 20px;
+  left: -60px;
+  border-color: var(--gold);
+  border-style: dashed;
+  animation: spinSlow 45s linear infinite reverse;
+}
+.deco-ring--belief {
+  width: 520px;
+  height: 520px;
+  top: -160px;
+  right: -200px;
+  border-color: var(--brand-200);
+  border-width: 3px;
+  animation: spinSlow 80s linear infinite;
+}
+.deco-ring--platform {
+  width: 350px;
+  height: 350px;
+  bottom: -120px;
+  left: -100px;
+  border-color: var(--accent-200);
+  border-width: 1.5px;
+  border-style: dashed;
+  animation: spinSlow 55s linear infinite reverse;
+}
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Floating dots (hidden — aurora provides enough) ---- */
+.deco-dots { display: none; }
+.deco-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-400);
+}
+.deco-dots--hero {
+  top: 60px;
+  left: 30px;
+}
+.deco-dots--stats {
+  bottom: 20px;
+  right: 40px;
+}
+.deco-dots--pricing {
+  top: 40px;
+  left: 20px;
+  opacity: 0.025;
+}
+.deco-dots--pricing span {
+  background: var(--accent-300);
+}
+
+/* ---- Diagonal accent line ---- */
+.deco-line {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--brand-200),
+    transparent
+  );
+  transform: rotate(-35deg);
+  opacity: 0.08;
+}
+.deco-line--hero {
+  top: 120px;
+  right: 60px;
+  width: 280px;
+}
+.deco-line--belief {
+  bottom: 80px;
+  left: 40px;
+  width: 220px;
+  transform: rotate(25deg);
+}
+
+/* ---- Abstract blob shapes ---- */
+.deco-blob {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 42% 58% 63% 37% / 45% 55% 45% 55%;
+  opacity: 0.025;
+  animation: blobMorph 20s ease-in-out infinite alternate;
+}
+.deco-blob--hero {
+  width: 320px;
+  height: 320px;
+  top: -40px;
+  right: -60px;
+  background: linear-gradient(135deg, var(--brand), var(--gold));
+}
+.deco-blob--platform {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: -40px;
+  background: linear-gradient(135deg, var(--accent-400), var(--brand-300));
+}
+@keyframes blobMorph {
+  0% {
+    border-radius: 42% 58% 63% 37% / 45% 55% 45% 55%;
+  }
+  25% {
+    border-radius: 55% 45% 38% 62% / 52% 48% 52% 48%;
+  }
+  50% {
+    border-radius: 38% 62% 55% 45% / 60% 40% 60% 40%;
+  }
+  75% {
+    border-radius: 62% 38% 45% 55% / 42% 58% 42% 58%;
+  }
+  100% {
+    border-radius: 48% 52% 58% 42% / 55% 45% 55% 45%;
+  }
+}
+
+/* ---- Wavy SVG section dividers ---- */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+/* Flip wave upside-down for transitions exiting a dark section back to light */
+.wave-divider--top {
+  transform: rotate(180deg);
+}
+/* Both entering and exiting dark sections use the dark background color for the wave path.
+   - Into dark: unrotated, path is at bottom, seamlessly meeting the dark section below.
+   - Out of dark: rotated 180deg, path is at top, seamlessly meeting the dark section above. */
+.wave-divider--dark svg,
+.wave-divider--white svg,
+.wave-divider--top svg {
+  fill: var(--dk-bg, #0a0a0f);
+}
+/* Match preceding section background when transitioning from TenArm Go (which ends at --bg-soft) */
+.go + .wave-divider {
+  background: var(--bg-soft);
+}
+
+/* ---- Abstract cross/plus shapes (hidden — too noisy) ---- */
+.deco-cross {
+  display: none;
+}
+.deco-cross::before,
+.deco-cross::after {
+  content: "";
+  position: absolute;
+  background: var(--brand-400);
+  border-radius: 2px;
+}
+.deco-cross::before {
+  width: 100%;
+  height: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.deco-cross::after {
+  width: 3px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.deco-cross--1 {
+  top: 15%;
+  left: 8%;
+  transform: rotate(15deg);
+}
+.deco-cross--2 {
+  top: 60%;
+  right: 5%;
+  transform: rotate(-20deg);
+  width: 16px;
+  height: 16px;
+}
+.deco-cross--3 {
+  bottom: 25%;
+  left: 12%;
+  transform: rotate(45deg);
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Glowing accent border on dark section cards ---- */
+.section.dark .ledger {
+  border-image: linear-gradient(
+      135deg,
+      rgba(166, 2, 18, 0.3),
+      rgba(160, 122, 63, 0.2),
+      transparent
+    )
+    1;
+}
+
+/* ---- Animated gradient line accent ---- */
+.deco-gradient-line {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  height: 3px;
+  width: 120px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--gold), var(--brand));
+  background-size: 200% 100%;
+  animation: gradientSlide 4s ease-in-out infinite;
+  opacity: 0.12;
+}
+@keyframes gradientSlide {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.deco-gradient-line--hero {
+  top: 50%;
+  right: 20px;
+  width: 160px;
+}
+
+/* ---- Belief section large accent ring (::after free) ---- */
+.belief::after {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  bottom: -350px;
+  right: -250px;
+  border: 3px solid var(--brand-100);
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Stats section mesh accent ---- */
+.stats::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(166, 2, 18, 0.04), transparent 40%),
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(160, 122, 63, 0.04),
+      transparent 40%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+.stats {
+  position: relative;
+  overflow: hidden;
+}
+.stats .stat-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Dark section light streaks ---- */
+.section.dark::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(
+      125deg,
+      transparent 30%,
+      rgba(166, 2, 18, 0.04) 40%,
+      transparent 50%
+    ),
+    linear-gradient(
+      235deg,
+      transparent 50%,
+      rgba(160, 122, 63, 0.03) 60%,
+      transparent 70%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Tour section soft orb ---- */
+.tour::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(166, 2, 18, 0.035), transparent 60%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+.tour {
+  overflow: hidden;
+}
+
+/* ---- Pricing section premium glow ---- */
+.pricing::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(
+    ellipse,
+    rgba(160, 122, 63, 0.05),
+    transparent 60%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+.pricing {
+  overflow: hidden;
+}
+
+/* ---- Reduced-motion: disable decorative animations ---- */
+@media (prefers-reduced-motion: reduce) {
+  .deco-ring,
+  .deco-blob {
+    animation: none !important;
+  }
+  .deco-gradient-line {
+    animation: none !important;
+  }
+  .hero::before,
+  .hero::after {
+    animation: none !important;
+  }
+  .gyro-ring--1,
+  .gyro-ring--2,
+  .gyro-ring--3,
+  .flux-beam {
+    animation: none !important;
+  }
+}
+
+/* =========================================================================
+   Abstract Geometric & Kinetic Visual Constructs
+   ========================================================================= */
+
+/* Hero Abstract Gyroscope & Kinetic Lattice */
+.abstract-gyro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px;
+  height: 580px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 24px rgba(166, 2, 18, 0.15));
+}
+.abstract-gyro svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.gyro-ring {
+  transform-origin: center;
+}
+.gyro-ring--1 {
+  animation: gyroSpin 55s linear infinite;
+}
+.gyro-ring--2 {
+  animation: gyroSpin 38s linear infinite reverse;
+}
+.gyro-ring--3 {
+  animation: gyroSpin 80s linear infinite;
+}
+@keyframes gyroSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.gyro-pulse-node {
+  animation: pulseNode 3s ease-in-out infinite alternate;
+}
+@keyframes pulseNode {
+  0% { r: 3; opacity: 0.4; }
+  100% { r: 5; opacity: 1; filter: drop-shadow(0 0 8px var(--brand-bright)); }
+}
+
+/* Abstract Flux Ribbon in Paradigm */
+.abstract-flux {
+  margin: 20px 0 24px;
+  width: 100%;
+  max-width: 540px;
+  position: relative;
+  z-index: 1;
+}
+.abstract-flux svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.flux-beam {
+  stroke-dasharray: 6 12;
+  animation: fluxFlow 14s linear infinite;
+}
+@keyframes fluxFlow {
+  to { stroke-dashoffset: -180; }
+}
+.flux-node {
+  transition: all 0.3s ease;
+}
+.flux-node:hover {
+  filter: drop-shadow(0 0 10px var(--gold));
+  cursor: pointer;
+}

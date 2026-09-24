@@ -1,0 +1,425 @@
+/* =========================================================================
+   TenArm Go
+   ========================================================================= */
+.go {
+  position: relative;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+.go-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.go-copy h2 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+}
+.go-copy strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+.go-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 26px 0 20px;
+}
+.go-feat {
+  display: flex;
+  gap: 14px;
+  text-align: left;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  transition: 0.3s var(--spring);
+}
+.go-feat:hover {
+  background: var(--bg-soft);
+  transform: translateX(4px);
+  box-shadow: var(--sh-sm);
+}
+.go-feat.active {
+  border-color: var(--gold);
+  background: rgba(160, 122, 63, 0.14);
+  box-shadow: 0 10px 30px -14px rgba(160, 122, 63, 0.5);
+}
+.go-ic {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--gold-50);
+  color: var(--gold);
+  border: 1px solid var(--gold-100);
+}
+.go-feat.active .go-ic {
+  background: var(--gold);
+  color: #fff;
+}
+.go-feat b {
+  color: var(--text);
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.go-feat small {
+  color: var(--text-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  display: block;
+}
+
+/* Phone */
+.go-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 560px;
+}
+
+/* Floating live cards around the phone */
+.go-float {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 210px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 13px;
+  box-shadow: var(--sh-lg);
+  animation: floaty 7s ease-in-out infinite;
+}
+.go-float b {
+  display: block;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.go-float small {
+  color: var(--text-mut);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+}
+.go-float-ic {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  flex: none;
+  font-size: 1.05rem;
+}
+.go-float--1 {
+  top: 14%;
+  right: -4%;
+  animation-delay: 0.6s;
+}
+.go-float--1 .go-float-ic {
+  background: var(--gold-50);
+  color: var(--gold);
+}
+.go-float--2 {
+  bottom: 16%;
+  left: -4%;
+  animation-delay: 1.8s;
+}
+.go-float--2 .go-float-ic {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+@media (max-width: 1000px) {
+  .go-visual {
+    min-height: 520px;
+  }
+  .go-float {
+    display: none;
+  }
+}
+.go-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(160, 122, 63, 0.16), transparent 66%);
+  filter: blur(50px);
+  z-index: 0;
+}
+.phone {
+  position: relative;
+  z-index: 2;
+  width: 280px;
+  height: 570px;
+  background: var(--accent-950);
+  border: 2px solid var(--accent-800);
+  border-radius: 42px;
+  padding: 12px;
+  box-shadow:
+    0 40px 80px -24px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  animation: floaty 7s ease-in-out infinite;
+}
+.phone-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 24px;
+  background: var(--accent-950);
+  border-radius: 0 0 14px 14px;
+  z-index: 5;
+}
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff, #fdf5f4);
+}
+.screen {
+  position: absolute;
+  inset: 0;
+  padding: 38px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  transition:
+    opacity 0.5s var(--spring),
+    transform 0.5s var(--spring);
+  pointer-events: none;
+}
+.screen.active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.scr-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  color: var(--ink-900);
+  font-size: 0.92rem;
+}
+.scr-time,
+.scr-badge {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--text-mut);
+}
+.scr-badge {
+  background: var(--brand);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.64rem;
+}
+.scr-map {
+  height: 110px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f4dfe0, #f7ecec);
+  border: 1px solid var(--brand-100);
+  background-image:
+    linear-gradient(rgba(30, 41, 59, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.05) 1px, transparent 1px);
+  background-size:
+    22px 22px,
+    22px 22px;
+}
+.pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--brand-300);
+  box-shadow: 0 0 0 4px rgba(166, 2, 18, 0.12);
+}
+.pin.p1 {
+  top: 24%;
+  left: 30%;
+}
+.pin.p2 {
+  top: 62%;
+  left: 66%;
+}
+.pin.me {
+  top: 46%;
+  left: 48%;
+  background: var(--brand);
+  box-shadow: 0 0 0 5px rgba(166, 2, 18, 0.22);
+  animation: pulse 2s infinite;
+}
+.route {
+  position: absolute;
+  top: 46%;
+  left: 48%;
+  width: 26%;
+  height: 16%;
+  border-top: 2px dashed var(--brand);
+  border-right: 2px dashed var(--brand);
+  opacity: 0.5;
+}
+.scr-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: var(--sh-sm);
+}
+.scr-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.scr-row b {
+  font-size: 0.84rem;
+  color: var(--ink-900);
+}
+.scr-card p {
+  font-size: 0.74rem;
+  color: var(--text-body);
+  margin-bottom: 8px;
+}
+.scr-actions {
+  display: flex;
+  gap: 8px;
+}
+.mini {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--bg-soft);
+  color: var(--text-body);
+  border: 1px solid var(--line);
+}
+.mini.brand {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.mini.danger {
+  background: #fff;
+  color: var(--brand);
+  border-color: var(--brand-200);
+}
+.scr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 0.76rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.scr-hero-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 120px;
+  border-radius: 16px;
+  background: var(--brand);
+  color: #fff;
+  margin: 4px 0;
+}
+.scr-hero-btn b {
+  font-size: 1.05rem;
+}
+.scr-hero-btn small {
+  font-size: 0.66rem;
+  opacity: 0.85;
+}
+.scr-hero-btn .ring {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: ringPulse 2.4s infinite;
+}
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+.scr-loc {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  color: var(--brand-700);
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.scr-balance {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.bal {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+}
+.bal b {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+.bal small {
+  font-size: 0.62rem;
+  color: var(--text-mut);
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
